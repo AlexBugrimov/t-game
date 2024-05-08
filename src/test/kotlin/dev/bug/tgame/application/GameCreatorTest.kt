@@ -1,7 +1,7 @@
 package dev.bug.tgame.application
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 
 class GameCreatorTest {
@@ -14,5 +14,15 @@ class GameCreatorTest {
         assertNotNull(game)
         assertThat(game.name)
             .isEqualTo("game name")
+    }
+
+    @Test
+    fun `games assigned unique handle`() {
+        val gameCreator = GameCreator()
+        val firstGame = gameCreator.createNewGame("T game")
+        val secondGame = gameCreator.createNewGame("T game")
+
+        assertThat(firstGame.handle())
+            .isNotEqualTo(secondGame.handle())
     }
 }

@@ -1,18 +1,21 @@
 package dev.bug.tgame.domain
 
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 
-class GameTest {
+class GameTest : StringSpec({
 
-    @Test
-    fun `new game assigned identifier`() {
+    
+
+    "new game assigned identifier" {
         val game = Game("name", "handle")
 
-        assertThat(game.handle())
-            .isNotNull()
-            .isNotBlank()
+        game shouldNotBe null
+        game.name shouldBe "name"
+        game.handle()
+            .shouldNotBe(null)
+            .shouldBe("handle")
     }
 
-
-}
+})

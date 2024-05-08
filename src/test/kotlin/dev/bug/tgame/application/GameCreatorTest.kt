@@ -1,28 +1,24 @@
 package dev.bug.tgame.application
 
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.assertNotNull
-import org.junit.jupiter.api.Test
+import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 
-class GameCreatorTest {
+class GameCreatorTest : StringSpec({
 
-    @Test
-    fun `new game created with given name`() {
+    "new game created with given name" {
         val gameCreator = GameCreator()
         val game = gameCreator.createNewGame("game name")
 
-        assertNotNull(game)
-        assertThat(game.name)
-            .isEqualTo("game name")
+        game shouldNotBe null
+        game.name shouldBe "game name"
     }
 
-    @Test
-    fun `games assigned unique handle`() {
+    "games assigned unique handle" {
         val gameCreator = GameCreator()
         val firstGame = gameCreator.createNewGame("T game")
         val secondGame = gameCreator.createNewGame("T game")
 
-        assertThat(firstGame.handle())
-            .isNotEqualTo(secondGame.handle())
+        firstGame.handle() shouldNotBe secondGame.handle()
     }
-}
+})

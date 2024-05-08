@@ -6,8 +6,6 @@ import io.kotest.matchers.shouldNotBe
 
 class GameTest : StringSpec({
 
-    
-
     "new game assigned identifier" {
         val game = Game("name", "handle")
 
@@ -17,5 +15,4 @@ class GameTest : StringSpec({
             .shouldNotBe(null)
             .shouldBe("handle")
     }
-
 })
